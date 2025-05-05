@@ -10,9 +10,14 @@ const Login = () => {
     navigate("/");
   };
   return (
-    <div>
-      <p>Sign in to google to Continue</p>
-      <button onClick={signInWithGoogle}>Sign in with google</button>
+    <div className="mt-9">
+      <p className="font-semibold">Sign in to google to Continue</p>
+      <button
+        className="bg-red-700 text-white text-sm border-2 rounded-xl p-1"
+        onClick={signInWithGoogle}
+      >
+        Sign in with google
+      </button>
     </div>
   );
 };
