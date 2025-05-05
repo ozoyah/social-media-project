@@ -12,11 +12,11 @@ const Navbar = () => {
   return (
     <>
       <section></section>
-      <div className="flex align-middle justify-between text-white bg-red-700">
+      <div className="flex items-center justify-between text-white bg-red-700">
         <div className="p-5">
           <h1 className="text-2xl font-medium">Zedd</h1>
         </div>
-        <div className="flex p-5 justify-between space-x-9">
+        <div className="flex p-5 items-center justify-between space-x-9">
           <div className="space-x-3">
             <NavLink
               to={"/"}
@@ -28,18 +28,31 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-            <NavLink
-              to={"/login"}
-              className={({ isActive }) =>
-                isActive
-                  ? "text-grey-200 font-bold border-b-2 border-solid "
-                  : "text-white font-medium"
-              }
-            >
-              Login
-            </NavLink>
+            {!user ? (
+              <NavLink
+                to={"/login"}
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-grey-200 font-bold border-b-2 border-solid "
+                    : "text-white font-medium"
+                }
+              >
+                Login
+              </NavLink>
+            ) : (
+              <NavLink
+                to={"/create-post"}
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-grey-200 font-bold border-b-2 border-solid "
+                    : "text-white font-medium"
+                }
+              >
+                Add Post
+              </NavLink>
+            )}
           </div>
-          <div className="flex flex-row align-middle space-x-3">
+          <div className="flex flex-row items-center space-x-3">
             {user && (
               <>
                 {user?.photoURL ? (
@@ -49,7 +62,7 @@ const Navbar = () => {
                 )}
 
                 <button
-                  className="bg-red-700 text-white text-sm border-2 rounded-xl p-1"
+                  className="bg-white text-red-700 text-sm border-2 border-white font-medium rounded-xl p-1"
                   onClick={signUserOut}
                 >
                   Log Out
