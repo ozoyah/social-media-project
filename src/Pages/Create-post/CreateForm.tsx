@@ -30,7 +30,7 @@ const CreateForm = () => {
       title: data.title,
       description: data.description,
       username: user?.displayName,
-      serId: user?.uid,
+      userId: user?.uid,
     });
   };
 
