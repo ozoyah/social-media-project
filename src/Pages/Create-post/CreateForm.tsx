@@ -5,6 +5,7 @@ import { LuCirclePlus } from "react-icons/lu";
 import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 
 interface CreateFormData {
   title: string;
@@ -13,6 +14,7 @@ interface CreateFormData {
 
 const CreateForm = () => {
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
 
   const schema = yup.object().shape({
     title: yup.string().required("enter the title of your post"),
@@ -32,6 +34,8 @@ const CreateForm = () => {
       username: user?.displayName,
       userId: user?.uid,
     });
+
+    navigate("/");
   };
 
   return (
@@ -56,7 +60,7 @@ const CreateForm = () => {
         />
 
         <input
-          className="border-2 border-red-600 rounded-2xl mt-3 p-1 text-sm font-medium"
+          className="border-2 border-red-600 rounded-xl mt-3 p-1 text-sm font-medium"
           type="submit"
         />
       </form>
